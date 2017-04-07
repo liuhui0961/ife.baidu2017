@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>IFE JavaScript Task 02</title>
+</head>
+<body>
+<h3>污染城市列表</h3>
+<ul id="aqi-list">
+  <!--   
+    <li>第一名：福州（样例），10</li>
+      <li>第二名：福州（样例），10</li> -->
+</ul>
+
+<script type="text/javascript">
+var aqiData=[
+  ["北京", 90],
+  ["上海", 50],
+  ["福州", 10],
+  ["广州", 50],
+  ["成都", 90],
+  ["西安", 100]
+];
+
+(function(){
+  var aqiul=document.getElementById("aqi-list");
+  var b=aqiData.filter(function(a){return a[1]>60;});
+     b.sort(function(a,c){
+      return c[1]-a[1];
+     });
+  (function write(){
+    for(var i=0;i<b.length;i++){
+      var li=document.createElement("li");
+      aqiul.appendChild(li);
+      li.innerHTML="第"+(i+1)+"名："+b[i];
+    }
+  })();
+})();
+
+</script>
+
+<script type="text/javascript">
+/*var aqiul=document.getElementById('aqi-list');
+var li=document.createElement("li");
+aqiul.appendChild(li);
+this.li=function (cityName,aqiData){
+	this.cityName=cityName;
+	this.aqiData=aqiData;
+	this.show=function(){alert(this.cityName + this.aqiData);};
+}
+Beijing=new li("北京",90);
+Shanghai=new li("上海",50);
+Fuzhou=new li("福州",10);
+Guangzhou=new li("广州",50);
+Chengdu=new li("成都",90);
+Xian=new li("西安",100);
+Chengdu.show();
+*/
+/*for(var i=0;i<li.length;i++){
+    li.innerHTML=this.li[i];
+}*/
+
+/*li.sort(function(a,b){
+    return a.aqiData-b.aqiData
+});
+for(var i=0;i<li.length;i++){
+    document.writeln("<br />city:"+li[i].cityName+" name:"+li[i].aqiData);
+}*/
+
+
+/*aqiChildrenList.sort(function(a,b){return a.aqiData-b.aqiData});
+for(var i=0;i<objectList.length;i++){
+    document.writeln('<br />age:'+aqiChildrenList[i].age);
+}*/
+
+/*pollution.sort(function(a,b){
+	return b[1]-a[1];
+}*/
+
+
+/*var aqiData = [
+  ["北京", 90],
+  ["上海", 50],
+  ["福州", 10],
+  ["广州", 50],
+  ["成都", 90],
+  ["西安", 100]
+];
+for( var i=0; i<aqiData.length; i++){
+	var aqiList=document.getElementById("aqi-list");
+	var aqiChildrenList=document.createElement("li");
+	this.element=document.getElementById("aqi-list").appendChild(aqiChildrenList);
+	this.element.innerHTML=this.aqiData[i];
+}*/
+
+</script>
+</body>
+</html>
