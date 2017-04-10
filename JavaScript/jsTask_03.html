@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IFE JavaScript Task 03</title>
+</head>
+<body>
+<ul id="source">
+  <li>北京空气质量：<b>90</b></li>
+  <li>上海空气质量：<b>70</b></li>
+  <li>天津空气质量：<b>80</b></li>
+  <li>广州空气质量：<b>50</b></li>
+  <li>深圳空气质量：<b>40</b></li>
+  <li>福州空气质量：<b>32</b></li>
+  <li>成都空气质量：<b>90</b></li>
+</ul>
+<ul id="resort">
+</ul>
+<button id="sort-btn">排序</button>
+
+<script>
+//获取数据
+var getData = function(){
+	var item = document.getElementById("source").getElementsByTagName("li");//获取列表项
+	//获取数据
+	var itemArr = new Array();//创建一个数组来存储数据
+	for ( var i = 0; i < item.length; i++) {
+		var itemStr = item[i].innerHTML.substring(0,7), //获取中文字符串
+			itemNum = item[i].lastChild.innerHTML; //获取数字
+			//itemNum = item[i].getElementsByTagName("b").innerHTML;
+		itemArr[i] = [itemStr, itemNum]; //将数据置入数组
+	}
+	return itemArr;
+}
+	
+//排序顺序
+var sortData = function(data) {
+	data.sort(function (a, b){
+		return a[1] - b[1]; //进行由小到大排序
+	});
+	return data;
+}
+var renderData = function(data) {
+	var sort = data.reverse(), //转换顺序由大到小
+	resortItem = document.getElementById("resort");  //获取输出列表
+	if (resortItem.childNodes.length < 3) {
+		for (var i = 0; i < sort.length; i++) {
+			//如何判断名次
+			var ranking = i + 1;
+			var li = document.createElement("li");
+			resortItem.appendChild(li);
+			li.innerHTML = "第" + ranking + "名：" + sort[i][0] + " <b>" + sort[i][1] + "</b>";
+		}
+		
+	}
+}	
+
+//处理转换、数据
+var btnHandle = function() {
+	var aqiData = getData();
+	aqiData = sortData(aqiData);
+	renderData(aqiData);
+}  
+var sortBtn = document.getElementById("sort-btn");
+	sortBtn.onclick = btnHandle;
+
+</script>
+</body>
+</html>
