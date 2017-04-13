@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IFE JavaScript Task 04</title>
+</head>
+<style>
+body{ padding:20px;}
+ul li{ list-style: none;}
+li{ float: left; background-color: #C00; color: #fff; font-size: 14px; font-family: Arial, Helvetica, sans-serif; min-width: 20px; padding: 0 5px; height: 30px; text-align: center; line-height: 30px; border: solid 1px #fff; margin: 5px;}
+</style>
+<body>
+<input id="numInput" type="text" value="" />
+<button id="leftIn">左侧入</button>
+<button id="rightIn">右侧入</button>
+&nbsp;&nbsp;
+<button id="leftOut">左侧出</button>
+<button id="rightOut">右侧出</button>
+
+<ul id="numGroup"></ul>
+<script>
+
+var leftIn = document.getElementById("leftIn");
+	leftIn.onclick = function(){
+	var numGroup = document.getElementById("numGroup");
+	var numInput = document.getElementById("numInput");
+	var inputValue = numInput.value;
+	var nodeLi = document.createElement("li");
+	if(isNaN(inputValue)||inputValue==""){
+		alert("请输入数字！");
+	}
+	else{
+		nodeLi.innerHTML = inputValue;
+		numGroup.insertBefore(nodeLi,numGroup.childNodes[0]);
+	}
+}
+
+var rightIn = document.getElementById("rightIn");
+	rightIn.onclick = function(){
+	var numGroup = document.getElementById("numGroup");
+	var numInput = document.getElementById("numInput");
+	var inputValue = numInput.value;
+	var nodeLi = document.createElement("li");
+	if(isNaN(inputValue) || inputValue == ""){
+		alert("请输入数字！");
+	}
+	else{
+		nodeLi.innerHTML = inputValue;
+		numGroup.appendChild(nodeLi);
+	}
+}
+
+var leftOut = document.getElementById("leftOut");
+	leftOut.onclick = function(){
+	var nodeLi = document.createElement("li");
+	if(numGroup.childNodes.length == 0){
+		alert("没有数字可移除！")
+		return;
+	}
+	else{
+		alert("删除第一个数字： " + numGroup.firstChild.innerHTML + " 。");
+		numGroup.removeChild(numGroup.firstChild);
+		
+	}
+}
+
+var rightOut = document.getElementById("rightOut"); 
+	rightOut.onclick = function(){
+	var nodeLi = document.createElement("li");
+	if(numGroup.childNodes.length == 0){
+		alert("没有数字可移除！")
+		return;
+	}
+	else{
+		alert("删除最后一个数字： " + numGroup.lastChild.innerHTML + " 。");
+		numGroup.removeChild(numGroup.lastChild);
+		
+	}
+}
+
+
+
+</script>
+</body>
+</html>
