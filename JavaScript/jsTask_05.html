@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IFE JavaScript Task 05</title>
+</head>
+<style>
+body{ padding:20px;}
+ul li{ list-style: none;}
+li{ display: inline-block; background-color: #C00; color: #fff; font-size: 14px; font-family: Arial, Helvetica, sans-serif; min-width: 20px; padding: 5px; text-align: center; border: solid 1px #fff; margin: 5px; vertical-align: bottom;}
+</style>
+<body>
+<input id="numInput" type="text" value="" />
+<button id="leftIn">左侧入</button>
+<button id="rightIn">右侧入</button>
+&nbsp;&nbsp;
+<button id="leftOut">左侧出</button>
+<button id="rightOut">右侧出</button>
+&nbsp;&nbsp;
+<button id="sorting">排序</button>
+
+<ul id="numGroup"></ul>
+<script>
+//var nodeLiList=new Array();
+
+//左侧入
+var leftIn = document.getElementById("leftIn");
+	leftIn.onclick = function(){
+		var numGroup = document.getElementById("numGroup");
+		var numInput = document.getElementById("numInput");
+		var inputValue = numInput.value;
+		var nodeLi = document.createElement("li");
+		nodeLi.style.height = inputValue*2+"px";
+		if(isNaN(inputValue)||inputValue==""){
+			alert("请输入数字！");
+		}
+		else if(inputValue<10||inputValue>100){
+			alert("请输入10~100之间的数字！");
+		}
+		else{
+			nodeLi.innerHTML = inputValue;
+			if(numGroup.children.length >= 60){
+				alert("队列元素数量最多为60个，不能再添加了！");
+			}
+			else{
+				//nodeLiList.push(nodeLi);
+				numGroup.insertBefore(nodeLi,numGroup.childNodes[0]);
+			}
+		}
+	}
+
+
+//右侧入
+var rightIn = document.getElementById("rightIn");
+	rightIn.onclick = function(){
+		var numGroup = document.getElementById("numGroup");
+		var numInput = document.getElementById("numInput");
+		var inputValue = numInput.value;
+		var nodeLi = document.createElement("li");
+		nodeLi.style.height = inputValue*2+"px";
+		if(isNaN(inputValue)||inputValue==""){
+			alert("请输入数字！");
+		}
+		else if(inputValue<10||inputValue>100){
+			alert("请输入10~100之间的数字！");
+		}
+		else{
+			nodeLi.innerHTML = inputValue;
+			if(numGroup.children.length >= 60){
+				alert("队列元素数量最多为60个，不能再添加了！");
+			}
+			else{
+				numGroup.insertBefore(nodeLi,numGroup.childNodes[0]);
+			}
+		}
+	}
+
+
+//左侧出
+var leftOut = document.getElementById("leftOut");
+	leftOut.onclick = function(){
+		var nodeLi = document.createElement("li");
+		if(numGroup.childNodes.length == 0){
+			alert("没有数字可移除！")
+			return;
+		}
+		else{
+			alert("删除第一个数字： " + numGroup.firstChild.innerHTML + " 。");
+			numGroup.removeChild(numGroup.firstChild);
+			
+		}
+	}
+
+
+//右侧出
+var rightOut = document.getElementById("rightOut"); 
+	rightOut.onclick = function(){
+		var nodeLi = document.createElement("li");
+		if(numGroup.childNodes.length == 0){
+			alert("没有数字可移除！")
+			return;
+		}
+		else{
+			alert("删除最后一个数字： " + numGroup.lastChild.innerHTML + " 。");
+			numGroup.removeChild(numGroup.lastChild);
+			
+		}
+	}
+
+
+//可视化排序
+var sorting = document.getElementById("sorting");
+	sorting.onclick = function(){
+		var liList = numGroup.childNodes;
+		var data=[];
+		for(var i=0; i<numGroup.children.length; i++){
+			var temp = liList[i].childNodes[0].nodeValue;
+			data.push(temp);
+		}
+		data.sort(function(a,b){
+			return a-b;
+		});
+		for(var j=0; j<data.length; j++){
+			liList[j].innerHTML = data[j];
+			liList[j].style.height = data[j]*2+"px";
+		}
+		return liList;
+	}
+
+</script>
+</body>
+</html>
